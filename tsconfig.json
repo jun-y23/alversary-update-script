@@ -1,17 +1,26 @@
 {
   "extends": "@tsconfig/node14/tsconfig.json",
-  "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Node 14",
-
+  "ts-node": {
+    // It is faster to skip typechecking.
+    // Remove if you want ts-node to do typechecking.
+    "transpileOnly": true,
+    "files": true,
+    "compilerOptions": {
+      // compilerOptions specified here will override those declared below,
+      // but *only* in ts-node.  Useful if you want ts-node and tsc to use
+      // different options with a single tsconfig.json.
+    }
+  },
   "compilerOptions": {
     "lib": ["es2020"],
+    "target": "esnext",
     "module": "commonjs",
-    "target": "es2020",
-
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node"
   },
   "include": ["src/**/*", "*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
